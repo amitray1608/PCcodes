@@ -1,0 +1,129 @@
+Lockdown (100 Marks)
+Corona pandemic is the biggest problem of the world currently. All the countries have reacted as per their capacity. India is also fighting against the pandemic under the leadership of PM Modi. The lockdown has been applied across the country to break the chain of corona and minimise the number of affected persons. The areas are categorised into the three zones based on the number of affected persons in that area.
+
+
+The three zones are:
+
+
+
+
+
+
+The Government has opened various distributor points to supply medicines, groceries and other essential items. The government is strict and has released the guidelines to be followed at the distributor points:
+
+At a time, N people can be present at the distributor point. The person should be wearing the colour of his zone to be easily identified.
+
+There are limitations on the adjacent persons standing in line belonging to the different zones moving from left to right. The limit should not exceed at any time otherwise the police will send all the N persons back.
+
+
+Example:
+
+If the limit on Red Zone and Orange Zone adjacent persons on moving from left to right is 2, then in the whole queue, there should not be more than 2 pairs of [Red Zone, Orange Zone].
+
+
+Note: The [Red Zone, Orange Zone] pair is different from the [Orange Zone, Red Zone] pair. 
+
+
+
+
+
+People do not want to be moved away by the police and thus want to follow all the guidelines shared by the government. They are smart and can arrange themselves in any of the correct ways, provided they know the total number of ways of arranging themselves in a valid manner. They need your help in determining the total number of ways of arranging themselves in a valid manner. Can you help them? 
+
+
+Note: Since, there can be a large number of ways of arranging people in a valid manner. Take modulo by 10^9+7.
+
+Input Format
+The first line of input consists of the number of people, N.
+
+The second line of input consists of the limit on the [Red Zone, Orange Zone] pairs/adjacents.
+The third line of input consists of the limit on the [Red Zone, Green Zone] pairs/adjacents.
+The fourth line of input consists of the limit on the [Orange Zone, Red Zone] pairs/adjacents.
+The fifth line of input consists of the limit on the [Orange Zone, Green Zone] pairs/adjacents.
+The sixth line of input consists of the limit on the [Green Zone, Red Zone] pairs/adjacents.
+The seventh line of input consists of the limit on the [Green Zone, Orange Zone] pairs/adjacents.
+
+Constraints
+1<= N <=100000
+
+0<= limit on different zone pairs/adjacents <=10
+
+
+
+Output Format
+Print the required output in a separate line.
+
+
+Note: There is a new line at the end of the output.
+
+
+
+Sample TestCase 1
+Input
+2
+1
+1
+1
+1
+0
+0
+Output
+7
+Explanation
+
+Number of people = 2
+Limit of [Red Zone, Orange Zone] pairs = 1
+
+Limit of [Red Zone, Green Zone] pairs = 1
+
+Limit of [Orange Zone, Red Zone] pairs = 1
+
+Limit of [Orange Zone, Green Zone] pairs = 1
+
+Limit of [Green Zone, Red Zone] pairs = 0
+
+Limit of [Green Zone, Orange Zone] pairs = 0
+
+
+
+There can be the following 7 arrangements with the given limits:
+
+
+
+Red Zone, Red Zone
+
+
+
+Red Zone, Orange Zone
+
+
+
+Red Zone, Green Zone
+
+
+
+Orange Zone, Orange Zone
+
+
+
+Orange Zone, Red Zone
+
+
+
+Orange Zone, Green Zone
+
+
+
+Green Zone, Green Zone
+
+
+
+
+
+None of the arrangements given above exceeds any limit.
+
+Time Limit(X):
+0.50 sec(s) for each input.
+Memory Limit:
+512 MB
+Source Limit:
+100 KB

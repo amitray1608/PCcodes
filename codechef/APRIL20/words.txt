@@ -1,0 +1,11 @@
+'my' occurance: 1
+'name' occurance: 1
+'is' occurance: 1
+'amit' occurance: 1
+'kumar' occurance: 1
+'and' occurance: 1
+'i' occurance: 1
+'am' occurance: 1
+'a' occurance: 1
+'good' occurance: 1
+'boy' occurance: 1

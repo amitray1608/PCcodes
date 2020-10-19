@@ -1,0 +1,17 @@
+noofweek = 4
+hours  = 40
+payrate = 400
+print('name : amit')
+salary = hours * payrate * noofweek
+print(salary, ' per month')
+yearly = salary*12
+print(yearly, ' per year')
+if(yearly <= 100000):
+    tax = (yearly*10)//100
+    print('10 % tax =', tax)
+elif(yearly <= 200000):
+    tax = (yearly*20)//100
+    print('20 % tax =', tax)
+else:
+    tax = (yearly*30)//100
+    print('30 % tax =', tax)

@@ -1,0 +1,54 @@
+//“Make it work, make it right, make it fast.” – Kent Beck
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+typedef double dd;
+const int siz = 1e6 + 5;
+const int MOD = 1e9 + 7;
+#define endl '\n'
+#define deb(x) cout << #x << " = " << x << endl;
+void solve(){
+	string s;
+	cin >> s;
+	string dp = "";
+
+	for(int i = 1; i < (int)s.size() - 1; i++){
+		if(s[i] == s[i-1] && s[i] == s[i+1]){
+				for(char x = 'a'; x <= 'z'; x++){
+					if(x != s[i-1] && x != s[i+1]){
+						s[i] = x;
+						break;
+					}
+				}
+			}			
+		}
+	
+		for(int i = 0; i < (int)s.size() - 1; i++){
+		if(s[i] == s[i+1]){
+				for(char x = 'a'; x <= 'z'; x++){
+					if(x != s[i-1] && x != s[i+1]){
+						s[i] = x;
+						break;
+					}
+				}
+			}			
+		}
+	
+	
+	cout << s << endl;
+}
+
+int main(){
+	#ifndef RAY
+		freopen("input.txt", "r", stdin);
+	#endif
+		ios::sync_with_stdio(false);
+		cin.tie(nullptr);
+		int t = 1;
+		//cin >> t;
+		while(t--){
+			solve();
+		}
+	return 0;
+}
+	

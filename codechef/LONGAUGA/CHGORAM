@@ -1,0 +1,16 @@
+	int sa[101],t,s,b,rot,fav,i;
+	cin >> t;
+	while(t--) {
+		rot=1;
+		cin >>s;
+		for(i =0;i<s;i++) {
+			cin >> sa[i];
+		}
+		cin >> b;
+		fav = sa[b-1];
+		for (i =0; i< s; i++)
+		{
+			if(sa[i] < fav)
+				rot++;
+		}
+		cout <<rot<<"\n";

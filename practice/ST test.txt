@@ -1,0 +1,28 @@
+Q. State briefly any one type of non-functional Testing with the help of an example
+
+Ans: One type of non functional testing would be Usability testing.
+
+Usability testing deals with the user experience which makes sure that the interface is built in such a way which satisfies user expectations i.e., both in effectiveness and simplicity. For example, releasing a beta version of the software/application and monitor user interactions with it (recording their movements), provide beta testers with a task to find the issues and providing feedback to the developers for further improvement.
+
+Example: YouTube Studio which was in beta version in previous few months before releasing the final product. They checked the usefulness, desires and accessibility of the YouTube Studio and increased its efficiency, accuracy and user friendliness through the user experience data they have collected.
+
+Q. Explain the different phases of the software Testing Life Cycle (STLC).
+
+Ans: There area 6 major phases of STLC −
+
+
+
+Requirement Analysis - demand Analysis during which check team studies needs|the wants|the necessities} from a testing purpose of read to spot testable necessities and also the QA team could move with numerous stakeholders to grasp requirements very well. necessities can be either purposeful or non-functional. Automation feasibleness for the testing project is additionally worn out this stage.
+Test planning - Test coming up with could be a introduce that a Senior QA manager determines the check set up strategy at the side of efforts and value estimates for the project. Moreover, the resources, check setting, check limitations and also the testing schedule also are determined. The check set up gets ready and finalised within the same section.
+Test Case Development - Test Case legal action The legal action Development section involves the creation, verification and make over of check cases & check scripts when the check set up is prepared. Initially, the check knowledge is known then created and reviewed so reworked supported the preconditions. Then the QA team starts the event method of check cases for individual units.
+Test Environment Setup − check setting Setup decides the code and hardware conditions below that a piece product is tested. it's one among the essential aspects of the testing method and might be worn out parallel with the legal action Development section. check team might not be concerned during this activity if the event team provides the check setting. The check team is needed to try to to a readiness check of the given setting.
+Test Execution − period validation of product and finding bugs.
+Test Closure − check Cycle Closure section is completion of check execution that involves many activities like check completion coverage, assortment of check completion matrices and check results. Testing team members meet, discuss and analyse testing artefacts to spot ways that ought to be enforced in future, taking lessons from current check cycle. the thought is to get rid of method bottlenecks for future check cycles.
+
+Q. Describe glass box testing in detail
+
+Ans: Glass box testing determines the structure and data of the program logic or the code. in this testing, one can see the code and confirm that if its executes or not, allowing the tester to make sure all of the code are tested. This testing ensures the coverage for better results. The tester make sure that the code are tested and validated for accurate execution of the code.
+
+Here, each unit of the code is tested for improvement and provide better version of the code. Along with the hidden errors and bugs in the code, it also helps to know the working of the code and to use this knowledge in the other applications. With this knowledge, tester will improve in their programming and testing the applications.
+
+Although this is better than black and white box testing, the tester in glass box should have the knowledge of programming. Also, the testing take times as the tester have to wait for the developer to complete the code. If this is solved then glass box testing is the besting testing overcoming the limitations of the white and black box testing.
