@@ -10,19 +10,30 @@ void solve(){
   int n;
   cin >> n;
   vector<pair<int, int>> a(n);
-  for(auto &i : a)
+  map<int, int> ind;
+  set<int> st;
+  for(auto &i : a) {
     cin >> i.first >> i.second;
+    st.insert(i.first);
+    st.insert(i.second);
+  }
+  int id = 0;
+  for(int i : st)
+    ind[i] = id++;
+  vector<int> ans(st.size(), 0);
   auto cmp = [&](const pair<int, int> &x, const pair<int, int> &y) {
-    if(x.first == y.first)
       return x.second < y.second;
-    return x.first < y.first;
   };
   sort(a.begin(), a.end(), cmp);
-  int maxi = 0, curr = 0, start = a[0].first, end = a[0].second;
-  for(int i = 1; i < n; i++) {
-    if(
+  for(int i = 0; i < n; i++) {
+    int sid = ind[a[i].first], eid = ind[a[i].second];
+    ans[sid]++, ans[eid]--;
   }
-  cout << count << endl;
+  for(int i = 1; i < st.size(); i++) {
+//    cout << ans[i] << ' ';
+    ans[i] += ans[i-1];
+  }
+  cout << *max_element(ans.begin(), ans.end()) << endl;
 }
 
 int main(){

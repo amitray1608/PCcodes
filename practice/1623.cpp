@@ -5,30 +5,21 @@ using namespace std;
 typedef long long ll;
 typedef long double ld;
 const int MOD = 1e9 + 7;
+ll sum = 0, n;
+vector<int> a;
+ll recc(int i, ll curr) {
+  if(i == n) {
+    return abs((sum - curr) - curr);
+  }
+  return min(recc(i + 1, curr + a[i]), recc(i + 1, curr));
+}
 
 void solve(){
-  string s;
-  cin >> s;
-  string ans = "";
-  vector<int> f(26, 0);
-  for(char c : s) 
-    f[c - 'A']++;
-  int count = 0;
-  char odd;
-  for(int i = 0; i < 26; i++) 
-    if(f[i]&1) odd = 'A' + i, count++;
-  if(count > 1) {
-    cout << "NO SOLUTION";
-    return;
-  } 
-  for(int i = 0; i < 26; i++) {
-    ans += string(f[i]/2, ('A'+i));
-  }
-//  deb(ans);
-  string x = ans;
-  if(count&1) ans += odd;
-  reverse(x.begin(), x.end());
-  ans += x;
+  cin >> n;
+  a.resize(n);
+  for(int &i : a) cin >> i;
+  sum = accumulate(a.begin(), a.end(), 0LL);
+  ll ans = recc(0, 0LL);
   cout << ans;
 }
 
