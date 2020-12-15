@@ -1,4 +1,5 @@
 #include<bits/stdc++.h>
+
 using namespace std;
 #define endl '\n'
 #define deb(x) cout << #x << " = " << x << endl;
@@ -6,28 +7,28 @@ typedef long long ll;
 typedef long double ld;
 const int MOD = 1e9 + 7;
 
-void solve(){
-  int n;
-  cin >> n;
-  vector<int> a(n);
-  for(int &i : a) cin >> i;
-  multiset<int> curr;
-  curr.insert(a[0]);
-  for(int i = 1; i < n; i++) {
-    auto x = curr.upper_bound(a[i]);
-    if(x != curr.end()) {
-      curr.erase(x);
-    }
-    curr.insert(a[i]);
+void solve() {
+  int n, k;
+  cin >> n >> k;
+  string a = "abc";
+  int i = 0;
+//  deb(a);
+//  return;
+  string ans = "";
+  while(i < n) {
+    ans += a;
+    i += 3;
   }
-  cout << (int)curr.size();
+  for(int i = 0; i < n; i++)
+    cout << ans[i];
+  cout << endl;
 }
 
 int main(){
   ios_base::sync_with_stdio(false);
   cin.tie(nullptr); cout.tie(nullptr);
   int t = 1, tt = 0;
-  //cin >> t;
+  cin >> t;
   while(t--){
     //cout << "Case #" << ++tt << ": ";
     solve();

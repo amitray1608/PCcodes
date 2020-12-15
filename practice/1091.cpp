@@ -10,24 +10,22 @@ void solve(){
   int n, m;
   cin >> n >> m;
   multiset<int> st;
-  map<int, int> freq;
   for(int i = 0; i < n; i++) {
     int x; cin >> x;
     st.insert(x);
-    freq[x]++;
   }
   vector<int> ans(m, -1);
   for(int i = 0; i < m; i++) {
     int x; cin >> x;
-    cout << x << " :  ";
-    int have = *st.lower_bound(x);
-    cout << have << endl;
-    if(have <= x) {
-      ans[i] = have;
-      freq[have]--;
-      if(freq[have] == 0) 
-        st.erase(have);
-     }
+    if(st.empty()) continue;
+    auto have = st.lower_bound(x);
+    while(have != st.begin() and *have > x) have--;
+    if(st.begin() == have and *have <= x) {
+      ans[i] = *have, st.erase(have);
+      continue;
+    }
+    if(*have <= x)
+      ans[i] = *have, st.erase(have);
   }
   for(int i : ans) cout << i << ' ';
 }

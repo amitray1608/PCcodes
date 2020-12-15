@@ -6,8 +6,8 @@ typedef long long ll;
 typedef long double ld;
 const int MOD = 1e9 + 7;
 
-ll mul(ll x, ll y) {
-  return (x % MOD * y % MOD) % MOD;
+ll add(ll x, ll y) {
+  return (x % MOD + y % MOD) % MOD;
 }
 
 void solve(){
@@ -15,40 +15,30 @@ void solve(){
   cin >> n >> m;
   vector<int> a(n);
   for(int &i : a) cin >> i;
-  vector<ll> dp(n, 0);
-  if(n == 1) {
+  vector<vector<ll>> dp(n+1, vector<ll>(m + 2, 0));
+  for(int i = 1; i < m + 1; i++) {
     if(a[0] == 0)
-      cout << m;
+      dp[0][i] = 1;
     else
-      cout << 1;
-    return 0;
+      dp[0][i] = (a[0] == i ? 1 : 0);
   }
-
-  if(a[1] == 0 and a[0] == 0)
-    dp[0] = m;
-  else
-    dp[0] = 3;
-
   for(int i = 1; i < n; i++) {
-    if(i == n - 1) {
-      if(a[i] != 0)
-        dp[i] = dp[i - 1];
-      else if(a[i] == 0 and a[i - 1] == 0)
-        dp[i] = mul(dp[i-1], m);
+    for(int j = 1; j < m + 1; j++) {
+      if(a[i] == 0)
+        dp[i][j] = add(add(dp[i - 1][j - 1], dp[i - 1][j]), dp[i - 1][j + 1]);
       else
-        dp[i] = mul(dp[i - 1], 3);
-    } else if(a[i] != 0) 
-      dp[i] = dp[i - 1];
-    else {
-      if(abs(a[i - 1] - a[i + 1]) == 1)
-        dp[i] = mul(dp[i-1], 2LL);
-      else if(abs(a[i - 1] - a[i + 1]) == 0)
-        dp[i] = mul(dp[i - 1], 3LL);
-      else
-        dp[i] = dp[i - 1];
+        dp[i][j] = (a[i] == j ? add(add(dp[i - 1][j - 1], dp[i - 1][j]), dp[i - 1][j + 1]): 0);
     }
   }
-  cout << dp[n - 1];
+  ll ans = 0;
+  for(int i = 1; i < m + 1; i++) {
+    ans = add(ans, dp[n - 1][i]);
+  }
+//  for(int i = 0; i < n + 1; i++) {
+//    for(int j = 1; j < m + 1; j++) cout << dp[i][j] << ' ';
+//    cout << endl;
+//  }
+  cout << ans;
 }
 
 int main(){
