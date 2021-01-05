@@ -1,33 +1,43 @@
 #include<bits/stdc++.h>
 
 using namespace std;
-#define endl '\n'
-#define deb(x) cout << #x << " = " << x << endl;
-typedef long long ll;
-typedef long double ld;
-const int MOD = 1e9 + 7;
 
-#define swap(a, b) temp = a; a = b; b = temp;
+int dx[] = {1, 0, -1, 0}; int dy[] = {0, 1, 0, -1}; //4 Direction
 
-int fi(int b) {
-  static int n = 5;
-  n++;
-  return n;
-}
+int main() {
+  
+  int n, m;
+  cin >> n >> m;
+  string s[n];
+  for(string &i : s) cin >> i;
 
-void solve() {
-  int b = 5;
-  cout << fi(b) << ' ' << fi(b);
-}
+  bool vis[n][m];
+  memset(vis, 0, sizeof vis);
 
-int main(){
-  ios_base::sync_with_stdio(false);
-  cin.tie(nullptr); cout.tie(nullptr);
-  int t = 1, tt = 0;
-  //cin >> t;
-  while(t--){
-    //cout << "Case #" << ++tt << ": ";
-    solve();
+  queue<pair<int, int>> q;
+
+  int ans = 0;
+
+  for(int i = 0; i < n; i++) {
+    for(int j = 0; j < m; j++) {
+      if(vis[i][j] or s[i][j] == '0') continue;
+      q.push({i, j});
+      vis[i][j] = true;
+      ans++;
+      while(!q.empty()) {
+        auto X = q.front();
+        q.pop();
+        for(int k = 0; k < 4; k++) {
+          int x = X.first + dx[k], y = X.second + dy[k];
+          if(x >= 0 and x < n and y >= 0 and y < m and !vis[x][y] and s[x][y] == '1') {
+            vis[x][y] = 1;
+            q.push({x, y});
+          }
+        }
+      }
+    }
   }
+
+  cout << ans << '\n';
   return 0;
-} //Hajimemashite
+}

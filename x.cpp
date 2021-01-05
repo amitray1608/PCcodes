@@ -145,18 +145,54 @@ for (int i=2; i<p; ++i)
 	    ifac[i] = 1LL * ifac[i+1] * (i+1) % MOD;
 	  }
 	}
-
-ll comb(ll a, ll b) {
-	if (a == 0 && b == 0)return 1;
-	if (a < b || a < 0)return 0;
-	ll tmp = ifac[a - b] * ifac[b] % M;
-	return tmp * fac[a] % M;
+constexpr int mod = 1e9 + 7;
+ 
+struct M {
+    unsigned v;
+    M(long long a = 0) : v((a %= mod) < 0 ? a + mod : a) {}
+    M& operator+=(M r) { if ((v += r.v) >= mod) v -= mod; return *this; }
+    M& operator-=(M r) { if ((v += mod - r.v) >= mod) v -= mod; return *this; }
+    M& operator*=(M r) { v = (uint64_t)v * r.v % mod; return *this; }
+};
+ 
+uint32_t add(M a, M b) { return (a += b).v; }
+uint32_t mul(M a, M b) { return (a *= b).v; }
+uint32_t sub(M a, M b) { return (a -= b).v; }
+ 
+uint32_t po(M x, int n) {
+    M res(1);
+    while (n > 0) {
+        res *= (n & 1 ? x : 1);
+        x *= x; n /= 2;
+    }
+    return res.v;
 }
-ll perm(ll a, ll b) {
-	if (a == 0 && b == 0)return 1;
-	if (a < b || a < 0)return 0;
-	return fac[a] * ifac[a - b] % M;
+ 
+ 
+constexpr int mm = 4e5+1;
+int fact[mm], invFact[mm];
+ 
+void pre() {
+    fact[0] = invFact[0] = invFact[1] = 1;
+ 
+    for (int i = 1; i < mm; i++) {
+        fact[i] = mul(fact[i - 1], i);
+    }
+ 
+    for (int i = 2; i < mm; i++) {
+        invFact[i] = mul((mod - mod / i), invFact[mod % i]);
+    }
+ 
+    for (int i = 1; i < mm; i++) {
+        invFact[i] = mul(invFact[i - 1], invFact[i]);
+    }
 }
+int ncr(int n, int r) {
+    assert(n >= 0 and r >= 0); if (n < r) return 0;
+    return mul(mul(fact[n], invFact[r]), invFact[n - r]);
+}
+ 
+ 
 long long MODinv(long long a) {
 	long long b = M, u = 1, v = 0;
 	while (b) {
