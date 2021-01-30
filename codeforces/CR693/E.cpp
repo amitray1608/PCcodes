@@ -50,17 +50,20 @@ void solve() {
   vector<ll>dist = dijkstra(0);
 //  for(auto i : dist) cout << i << ' ';
 //  cout << '\n';
-  vector<ll> res(n);
-  function<void(int)> dfs = [&](int s) {
+  vector<ll> res(n, inf);
+  function<void(ll)> dfs = [&](ll s) {
     res[s] = dist[s];
     for(auto u : G[s]) {
       int v = u.second;
       if(dist[v] > dist[s]) {
-        dfs(v);
-        res[s] = min(res[s], res[v]);
+        if(res[v] == inf) {
+          dfs(v);
+          res[s] = min(res[s], res[v]);
+        } else res[s] = min(res[s], res[v]);
       } else res[s] = min(dist[v], res[s]);
     }
   };
+
   dfs(0);
   for(auto i : res) cout << i << ' ';
   cout << '\n';

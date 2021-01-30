@@ -5,27 +5,23 @@ using namespace std;
 signed main() {
   int n;
   cin >> n;
-  vector<array<int, 3>> a(n);
-  int t = 0, aa = 0;
+  int sum = 0;
+  vector<int> a(n);
   for(int i = 0; i < n; i++) {
-    cin >> a[i][2] >> a[i][1];
-    a[i][0] += a[i][2] + a[i][1];
-    aa += a[i][2];
+    int u, v;
+    cin >> u >> v;
+    sum -= u;
+    a[i] = u + u + v;
   }
+  
   sort(a.begin(), a.end());
-  reverse(a.begin(), a.end());
-  int count = 0;
-//  for (int i = 0; i < n; i++) {
-//      cout << a[i][0] << ' ' << a[i][1] << ' ' << a[i][2] << endl;
-//  }
-  for(int i = 0; i < n; i++) {
-    t += a[i][0];
-    aa -= a[i][2];
-    count++;
-    if(t > aa) {
-      break;
-    } 
+  int ans = 0;
+  while(sum <= 0) {
+    sum += a.back();
+    a.pop_back();
+    ans++;
   }
-  cout << count << '\n';
+
+  cout << ans << '\n';
   return 0;
 }
