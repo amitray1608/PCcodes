@@ -15,28 +15,33 @@ void solve(){
   vector<ll>ans(n, 0);
 
   auto check = [&](ll x) {
-    ll count = 0, idx = 0;
+    ll count = 0, j = 0;
+    vector<ll> res(n, 0);
     for(auto &i : a) {
-      ll l = 0, h = m, tmp = 0;
-      while(l <= h) {
-        ll mid = l + (h-l)/2;
-        ll maxi = (ceil)(mid/i[1]) * i[0] + (((ceil(mid/i[1])) - 1) * i[2]);
-        (maxi <= x) ? l = mid + 1 : h = mid - 1;
-      }
-      ans[idx++] = l;
-      count += l;
-      if(count >= m) break;
+      ll t, z, y;
+      ll tmp = x;
+      t = i[0], z = i[1], y = i[2];
+      ll done = tmp / (t * z + y) * z + min(z, (tmp % (t * z + y) ) / t);
+      count += done;
+      res[j++] = done;
     }
-    return (count >= m); 
+    if (count >= m) {
+      for (int i = 0; i < n; i++) {
+        ans[i] = res[i];
+      }
+      return true;
+    } return false;
   };
 
-  ll l = 0, h = 1e8;
+  ll l = 0, h = 1e10, res = 0;
   while(l <= h) {
-    ll mid = l + (h-l)/2;
-    cout << mid << endl;
-    (check(mid)) ? h = mid - 1 :  l = mid + 1;
+    ll mid = l + (h - l) / 2;
+    if (check(mid)) 
+      h = mid - 1, res = mid;
+    else 
+      l = mid + 1;
   }
-  cout << l << endl;
+  cout << res << endl;
   for(auto &i : ans)
     cout << i << ' ';
   cout << endl;

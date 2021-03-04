@@ -14,7 +14,7 @@ import java.util.Scanner;
 import java.util.StringTokenizer;
 
 
-public class try {
+public class Try {
 
   public static void main(String[] args) throws IOException {
     OutputStream outputStream = System.out;
@@ -23,8 +23,7 @@ public class try {
     int T = 1;
     //T = in.nextInt();
     for(int TT = 1 ; TT <= T ; TT++){
-      int n = in.nextInt();
-      out.println(n);
+    
     }
     out.close();
   }

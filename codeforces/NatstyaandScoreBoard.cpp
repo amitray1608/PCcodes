@@ -8,6 +8,7 @@ const int MOD = 1e9 + 7;
 #define endl '\n'
 #define deb(x) cout << #x << " = " << x << endl;
 vector<string> digits = {"1110111", "0010010", "1011101", "1011011", "0111010", "1101011", "1101111", "1010010", "1111111", "1111011"};
+
 void solve(){
 	int n, k;
 	cin >> n >> k;
@@ -28,7 +29,8 @@ void solve(){
 			}
 		}
 	}
-	vector<vector<int>>dp(n+1, vector<int>(k+1));
+
+  vector<vector<int>>dp(n+1, vector<int>(k+1));
 	dp[n][0] = 1;
 	for(int i = n; i > 0; i--){
 		for(int j = 0; j <= k; j++){
