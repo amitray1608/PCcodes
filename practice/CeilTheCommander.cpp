@@ -1,3 +1,4 @@
+
 #include<bits/stdc++.h>
 using namespace std;
 #define endl '\n'
@@ -42,6 +43,7 @@ void decompose(int u, char alpha) {
 		decompose(it, alpha+1);
 	}
 }
+
 void solve(){
   int n; 
   cin >> n;

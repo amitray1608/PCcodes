@@ -1,0 +1,52 @@
+
+let n = no of elements in the array.
+let a = an array of n elements.
+
+function sortUsingTwoStacks :
+  let current = a stack for keeping the initial unsorted array.
+  let order = a stack for keeping the running sorted array.
+  
+  > push all the array elements into the current stack.
+  for each i in a :
+    current.push(i);
+
+  > do a loop until the current stack size becomes 0.
+    while current.size != 0 :
+      
+      > take a int variable to keep the top value of the current stack.
+      let curr = current.top();
+      
+      > pop the top element from the current stack.
+      current.pop();
+
+      > do a loop and transfer the elements greater than curr form the order stack, to the current stack.
+      while !order.empty() and order.top() > curr :
+        current.push(order.top());
+        order.pop();
+    
+      > push the curr variable to the order stack.
+      order.push(curr);
+
+      > do a loop and transfer top elements of the current stack to the order stack till the increasing order satisfies.
+      while !current.empty() and current.top() >= order.top() :
+        order.push(current.top());
+        current.pop();
+  
+  > after the above loops are executed, the order stack will conation elements in the decreasing order from top.
+  > so to sort it, transfer all the top elements of the order stack to current stack.
+
+  while !order.empty() :
+    current.push(order.top());
+    order.pop();
+  
+  > now the current stack will contain the elements in sorted order.
+    
+
+
+/* Time Complexity Analysis. */
+    > The worst time complexity will be 0(n ^ 2).
+    > As you've realized, this algorithm uses 2 stacks to sort a collection of items.
+    > At each step, it pops items from current and pushes then into order till the right place is found. Then it pops from order and pushes back to current.
+    > This means that at step n, there's a maximum of 2 * (n - 1) + 1 operations.
+    > If the initial collection is reverse-sorted, this will happen with each insertion, making the complexity O(N ^ 2).
+

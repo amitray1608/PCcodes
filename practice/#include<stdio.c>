@@ -1,0 +1,15 @@
+#include<stdio.h>
+
+#include<conio.h>
+
+
+int main()
+{
+
+
+  printf("helloworld");
+
+  getch();
+
+  retun 0;
+  }

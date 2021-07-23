@@ -1,24 +1,41 @@
+
+
 #include<bits/stdc++.h>
-#define ll long long
+
 using namespace std;
+#define int int64_t
 
 signed main() {
-  int n, x;
-  cin >> n >> x;
-  
-  vector<array<int, 2>> a(n);
-  for(int i = 0; i < n; i++) 
-    cin >> a[i][0], a[i][1] = i + 1;
-
-  sort(a.begin(), a.end());
-
-  for(int i = 0; i < n - 2; i++) {
-    for(int j = i + 1; j < n - 1; j ++) {
-      int left = x - a[i] - a[j]; 
-      if(binary_search(a.begin() + j + 1, a.end(), left)) {
-        auto p = upper_bound(a.begin() + j + 1, a.end(), left) - a.begin() - 1;
-        while(p >= 0 and (p == a[i][1] or p == a[j][1])) p--;
-        cout << a[i][1] << ' ' << a[j][1] << ' ' << a[p][1] << endl; 
-      }
+  ios::sync_with_stdio(false);
+  cin.tie(0); 
+  int n, target;
+  cin >> n >> target;
+  vector<array<int, 2>> nums(n);
+  for (int i = 0; i < n; i++) {
+    cin >> nums[i][0];
+    nums[i][1] = i + 1;
+  }
+  sort(nums.begin(), nums.end());
+  for (int i = 0; i < n; i++) {
+    auto [a, A] = nums[i];
+    int l = i + 1, r = n - 1;
+    while (l < r) {
+        auto [c, C] = nums[l];
+        auto [d, D] = nums[r];
+        int sum = a + c + d;
+        if (sum == target) {
+            cout << A << ' ' << C << ' ' << D << '\n';
+            return 0;
+        } else if (sum < target) {
+            l++;
+        } else {
+            r--;
+        }
+    }
+  }
+  cout << "IMPOSSIBLE" << '\n'; 	
   return 0;
-}
+} //Hajimemashite
+
+
+

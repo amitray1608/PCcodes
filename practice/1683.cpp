@@ -1,73 +1,62 @@
+
 #include<bits/stdc++.h>
+
 using namespace std;
-#define endl '\n'
-#define deb(x) cout << #x << " = " << x << endl;
-typedef long long ll;
-typedef long double ld;
-const int MOD = 1e9 + 7;
+int n, m;
+vector<vector<int>> adj, rev;
+vector<int> components, order, vis;
 
-template <typename T>
-class dsu {
-public:
-  vector<T> p;
-  vector<T> rank;
-  int n;
-
-  dsu(int _n) : n(_n) {
-    p.resize(n);
-    rank.resize(n);
-    iota(p.begin(), p.end(), 0);
-    fill(rank.begin(), rank.end() , 1);
+void dfs1(int s) {
+  vis[s] = true;
+  for (int i : adj[s]) {
+    if (!vis[i]) dfs1(i);
   }
-
-  inline T get(T x) {
-    return (x == p[x] ? x : (p[x] = get(p[x])));
-  }
-
-  inline bool unite(T x, T y) {
-    T px = get(x);
-    T py = get(y);
-    if (px != py) {
-      if(rank[px] == rank[py]){
-        p[py] = px;
-        rank[px]++;
-      } else if(rank[px] < rank[py]){
-        p[px] = py;
-      } else {
-        p[py] = px;
-      }
-      return true;
-    }
-    return false;
-  }
-};
-
-void solve(){
-  int n, m;
-  cin >> n >> m;
-  dsu<int> d(n);
-  for(int i = 0; i < n; i++) {
-    int u, v;
-    cin >> u >> v; u--, v--;
-    d.unite(u, v);
-  }
-  set<int> ans;
-  for(int i = 0; i < n; i++)
-    ans.insert(d.p[i]);
-  cout << ans.size() << endl;
-  for(int i = 0; i < n; i++) 
-    cout << d.p[i]+1 << ' ';
-  cout << endl;
+  order.push_back(s);
 }
 
-int main(){
-  ios_base::sync_with_stdio(false);
-  cin.tie(nullptr); cout.tie(nullptr);
-  int t = 1, tt = 0;
-  //cin >> t;
-  while(t--){
-    //cout << "Case #" << ++tt << ": ";
-    solve();
+void dfs2(int s) {
+  vis[s] = true;
+  components.push_back(s);
+  for (int i : rev[s]) {
+    if (!vis[i]) dfs2(i);
   }
+}
+
+int main() {
+  ios::sync_with_stdio(false);
+  cin.tie(0); 
+  cin >> n >> m;
+  adj.resize(n);
+  rev.resize(n);
+  for (int i = 0; i < m; i++) {
+    int u, v;
+    cin >> u >> v;
+    u--, v--;
+    rev[v].push_back(u);
+    adj[u].push_back(v);
+  } 
+  vis.assign(n, false);
+  for (int i = 0; i < n; i++) 
+    if (!vis[i]) dfs1(i);
+
+  vis.assign(n, false);
+  reverse(order.begin(), order.end());
+  int count = 1;
+  vector<int> res(n, 0);
+  for (int i : order) {
+    if (!vis[i]) {
+      dfs2(i);
+      for (int j : components) {
+        res[j] = count;
+      }
+      count++;
+      components.clear();
+    }
+  }
+  cout << count - 1 << '\n';
+  for (int i : res) {
+    cout << i << ' ';
+  } cout << '\n';
   return 0;
 } //Hajimemashite
+

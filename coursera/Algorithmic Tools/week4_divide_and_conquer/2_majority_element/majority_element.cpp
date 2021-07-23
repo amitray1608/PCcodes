@@ -8,6 +8,7 @@ int get_majority_element(vector<int> &a, int left, int right) {
   if (left == right) return -1;
   if (left + 1 == right) return a[left];
   //write your code here
+
   return -1;
 }
 

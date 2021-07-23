@@ -1,0 +1,31 @@
+
+#include<bits/stdc++.h>
+
+using namespace std;
+using ll = long long;
+
+int main() {
+  ios::sync_with_stdio(false);
+  cin.tie(0); 
+  int t = 1;
+  cin >> t;
+  for (int tt = 1; tt <= t; ++tt) {
+    ll n, a, b;
+    cin >> n >> a >> b;
+    map<ll, bool> mp;
+    mp[1] = true;
+    function<bool(ll)> recc = [&](ll x) {
+      if (mp.find(x) != mp.end())
+        return mp[x];
+      if (x) {
+        if (x == 1) return true;
+        return /*mp[x] = */((a > 1 and x % a == 0 and recc(x / a)) or recc(x - b));
+      }
+      return false;
+    };
+    bool ok = recc(n);
+    cout << (ok ? "Yes" : "No") << '\n';
+  }	
+  return 0;
+} //Hajimemashite
+

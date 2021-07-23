@@ -1,0 +1,14 @@
+import pandas as pd
+
+filename = 'student.csv'
+
+df = pd.read_csv(filename)
+print(df.to_string())
+
+#To print first 5 rows of the dataframe
+firstFive = df.head(5)
+print(firstFive)
+
+#To print last 5 rows of the dataframe
+lastFive = df.tail(5)
+print(lastFive)

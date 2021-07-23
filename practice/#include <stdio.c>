@@ -1,0 +1,8 @@
+#include <stdio.h>
+
+int main() {
+   // printf() hello sumit i am your friend 
+
+   printf("Hello, World!");
+   return 0;
+}
